@@ -1,0 +1,17 @@
+version: '3'
+
+x-defaults: &defaults
+  image: sparanoid/amsf:latest
+  restart: always
+  volumes:
+    - ./_app/_data/:/opt/amsf/_app/_data/
+    - ./_app/_pages/:/opt/amsf/_app/_pages/
+    - ./_app/_posts/:/opt/amsf/_app/_posts/
+    - ./_config.yml:/opt/amsf/_config.yml
+  ports:
+    - "4321:4321"
+
+services:
+  amsf:
+    <<: *defaults
+    command: serve
